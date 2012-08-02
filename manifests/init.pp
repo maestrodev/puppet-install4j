@@ -24,19 +24,19 @@ class install4j($version = '4.2.8', $license, $run_as, $homedir = 'UNSET', $down
     $actual_homedir = $homedir
   }
 
-  $majorVersionPath = regsubst($version, "^([0-9]+)\.([0-9]+)\.([0-9]+).*$", ".install4j\1")
+  $majorVersion = regsubst($version, "^([0-9]+)\.([0-9]+)\.([0-9]+).*$", "\1")
 
   file { "$actual_homedir/.install4j":
     mode    => "0600",
     require => User[$run_as],
   }
-  file { "$actual_homedir/$majorVersionPath":
+  file { "$actual_homedir/.install4j$majorVersion":
     mode    => "0700",
     ensure  => directory,
     recurse => true,
     require => User[$run_as],
   }
-  file { "$actual_homedir/$majorVersionPath/config.xml":
+  file { "$actual_homedir/.install4j$majorVersion/config.xml":
     mode    => "600",
     content => template("install4j/config.xml.erb"),
   }
