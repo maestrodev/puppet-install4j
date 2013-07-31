@@ -15,7 +15,7 @@ define install4j::jre(
   }
 
   $groupPath = regsubst($groupId, '\.', '/', 'G')
-  $path = regsubst($name, '^(.*)-([0-9._]+)$', "$groupPath/\1/\2/\1-\2.tar.gz")
+  $path = regsubst($name, '^(.*)-([0-9._]+)$', "$groupPath/\\1/\\2/\\1-\\2.tar.gz")
   wget::authfetch { "fetch-${name}_jre":
     source => "${repo['url']}/${path}",
     destination => "$installpath_real/jres/${name}.tar.gz",

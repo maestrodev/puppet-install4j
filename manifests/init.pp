@@ -24,7 +24,7 @@ class install4j($version = '4.2.8', $license, $run_as, $homedir = 'UNSET', $down
     $actual_homedir = $homedir
   }
 
-  $majorVersion = regsubst($version, "^([0-9]+)\.([0-9]+)\.([0-9]+).*$", "\1")
+  $majorVersion = regsubst($version, '^([0-9]+)\.([0-9]+)\.([0-9]+).*$', '\1')
 
   file { "$actual_homedir/.install4j":
     mode    => "0600",
